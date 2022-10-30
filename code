@@ -1,1 +1,53 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_tinder/functions /actions.dart';
+import 'package:flutter_tinder/utils/constants.dart';
+import 'package:flutter_tinder/widgets/appBar.dart';
+import 'package:flutter_tinder/widgets/bottomButton.dart';
+import 'package:swipe_cards/swipe_cards.dart';
+
+void main() {
+runApp(new MyApp());
+}
+
+class MyApp extends StatelessWidget{
+const MyApp({Key? key}) : super(key: key);
+
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+theme: ThemeData(brightness: Brightness.light),
+home: Home(),
+); //MaterialApp
+}
+}
+
+class Home extends StatefulWidget {
+const Home({Key? key}) : super(key: key);
+
+@override
+HomeState createState() = _HomeState();
+}
+
+class_HomeState extends State<Home> {
+List<SwipeItem> _swipeItems = <SwipeItem>[];
+MatchEngine? _matchEngine;
+List names = ["Andrews", "Master G", "Cristine", "Grammys", "Alex GH"];
+
+@override
+void initState() {
+for (int i = 0; i < names.length; i++) {
+_swipeItems.add(SwipeItem(
+content: Content(
+text: names[i],
+), //Content
+likeAction: () {
+actions(context, names[i], 'Liked');
+},
+nopeAction: () {
+actions (context, names[i], 'Rejected');
+},
+superlikeAction: () {
+actions (context, names[i], 'Super Liked');
+})); // SwipeItem
 
